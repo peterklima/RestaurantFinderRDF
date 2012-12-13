@@ -1,7 +1,4 @@
 *.class
 /gwt-unitCache
-
-# Package Files #
-*.jar
-*.war
-*.ear
+rpcPolicyManifest/
+*.rpc
