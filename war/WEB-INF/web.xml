@@ -2,13 +2,13 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>at.fhooe.restaurantfinder.server.GreetingServiceImpl</servlet-class>
+    <servlet-name>restaurantService</servlet-name>
+    <servlet-class>at.fhooe.restaurantfinder.server.RestaurantServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/restaurantfinderrdf/greet</url-pattern>
+    <servlet-name>restaurantService</servlet-name>
+    <url-pattern>/restaurantfinderrdf/restaurant</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
