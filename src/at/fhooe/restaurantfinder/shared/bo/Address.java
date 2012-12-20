@@ -7,21 +7,21 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = -3949350031310514679L;
 
 	private Long id;
-	
+
 	private String street;
-	
+
 	private String streetNumber;
-	
+
 	private int postalcode;
-	
+
 	private String city;
-	
+
 	private String country;
 
 	private double longitude;
-	
+
 	private double latitude;
-	
+
 	public Address() {
 	}
 
@@ -96,11 +96,8 @@ public class Address implements Serializable {
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(latitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(longitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + Double.toString(latitude).hashCode();
+		result = prime * result + Double.toString(longitude).hashCode();
 		result = prime * result + postalcode;
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
 		result = prime * result + ((streetNumber == null) ? 0 : streetNumber.hashCode());
@@ -131,9 +128,9 @@ public class Address implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
+		if (Double.compare(latitude, other.latitude) != 0)
 			return false;
-		if (Double.doubleToLongBits(longitude) != Double.doubleToLongBits(other.longitude))
+		if (Double.compare(longitude, other.longitude) != 0)
 			return false;
 		if (postalcode != other.postalcode)
 			return false;
@@ -155,5 +152,5 @@ public class Address implements Serializable {
 		return "Address [id=" + id + ", street=" + street + ", streetNumber=" + streetNumber + ", postalcode=" + postalcode + ", city=" + city + ", country="
 				+ country + ", longitude=" + longitude + ", latitude=" + latitude + "]";
 	}
-	
+
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import at.fhooe.restaurantfinder.shared.bo.Restaurant;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.shared.GWT;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
