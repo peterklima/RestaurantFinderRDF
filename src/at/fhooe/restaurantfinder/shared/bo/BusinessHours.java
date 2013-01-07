@@ -15,8 +15,15 @@ public class BusinessHours implements Serializable {
 	private Time end;
 
 	public BusinessHours() {
+		weekday = Weekday.MONDAY;
 		start = new Time(7, 0);
 		end = new Time(12, 0);
+	}
+
+	public BusinessHours(Weekday weekday, Time start, Time end) {
+		this.weekday = weekday;
+		this.start = start;
+		this.end = end;
 	}
 
 	public Long getId() {
