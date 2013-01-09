@@ -96,4 +96,14 @@ public class BusinessHours implements Serializable {
 	public String toString() {
 		return weekday.getLabel() + ": " + start.toString() + "-" + end.toString();
 	}
+
+	public static BusinessHours fromString(String string) {
+		String[] parts1 = string.split(": ");
+		String[] parts2 = parts1[1].split("-");
+		BusinessHours hours = new BusinessHours();
+		hours.setWeekday(Weekday.fromString(parts1[0]));
+		hours.setStart(Time.fromString(parts2[0]));
+		hours.setEnd(Time.fromString(parts2[1]));
+		return hours;
+	}
 }
