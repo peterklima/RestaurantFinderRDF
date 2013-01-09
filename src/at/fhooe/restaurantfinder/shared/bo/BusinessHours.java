@@ -92,4 +92,8 @@ public class BusinessHours implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return weekday.getLabel() + ": " + start.toString() + "-" + end.toString();
+	}
 }
