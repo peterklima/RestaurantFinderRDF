@@ -1,9 +1,9 @@
 package at.fhooe.restaurantfinder.server;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import at.fhooe.restaurantfinder.client.RestaurantService;
+import at.fhooe.restaurantfinder.database.RestaurantLoader;
 import at.fhooe.restaurantfinder.database.SDBWrapper;
 import at.fhooe.restaurantfinder.importer.RestaurantImporter;
 import at.fhooe.restaurantfinder.shared.bo.Restaurant;
@@ -26,13 +26,8 @@ public class RestaurantServiceImpl extends RemoteServiceServlet implements Resta
 			sdbWrapper.add(restaurant);
 		}
 
-		sdbWrapper.query("PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>"
-					+ "PREFIX lgdo:<http://linkedgeodata.org/ontology/>"
-					+ "SELECT * "
-					+ "WHERE { " +
-		// "?s <rdfs:label> ?name " +
-					"?s ?p ?o " + "} LIMIT 100");
-		return new ArrayList<Restaurant>();
+		RestaurantLoader restaurantLoader = new RestaurantLoader();
+		return restaurantLoader.load(100);
 	}
 
 }
