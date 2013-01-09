@@ -10,6 +10,8 @@ public class AddressConverter extends BOConverter {
 	private static final String POSTALCODE_PROPERTY = "hasPostalCode";
 	private static final String STREET_PROPERTY = "hasStreet";
 	private static final String HOUSENUMBER_PROPERTY = "hasHouseNumber";
+	private static final String LATITUDE_PROPERTY = "lat";
+	private static final String LONGITUDE_PROPERTY = "long";
 
 	public static void addToModel(Address address, Model model) {
 		AddressConverter converter = new AddressConverter(model);
@@ -26,6 +28,8 @@ public class AddressConverter extends BOConverter {
 		addPostalCodeIfNotNull(address.getPostalCode());
 		addStreetIfNotNull(address.getStreet());
 		addHouseNumberIfNotNull(address.getHouseNumber());
+		addLiteral(SDBWrapper.PREFIX_GEO, LATITUDE_PROPERTY, address.getLatitude());
+		addLiteral(SDBWrapper.PREFIX_GEO, LONGITUDE_PROPERTY, address.getLongitude());
 	}
 
 	private void addCityIfNotNull(String city) {
