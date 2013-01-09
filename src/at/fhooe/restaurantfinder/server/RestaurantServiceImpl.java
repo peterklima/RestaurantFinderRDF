@@ -5,7 +5,7 @@ import java.util.List;
 
 import at.fhooe.restaurantfinder.client.RestaurantService;
 import at.fhooe.restaurantfinder.database.SDBWrapper;
-import at.fhooe.restaurantfinder.server.importer.RestaurantImporter;
+import at.fhooe.restaurantfinder.importer.RestaurantImporter;
 import at.fhooe.restaurantfinder.shared.bo.Restaurant;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -18,7 +18,7 @@ public class RestaurantServiceImpl extends RemoteServiceServlet implements Resta
 
 	public List<Restaurant> getRestaurants() {
 		RestaurantImporter restaurantImporter = new RestaurantImporter();
-		List<Restaurant> restaurantList = restaurantImporter.loadRestaurants(5,10);
+		List<Restaurant> restaurantList = restaurantImporter.loadRestaurants(10);
 
 		SDBWrapper sdbWrapper = new SDBWrapper();
 

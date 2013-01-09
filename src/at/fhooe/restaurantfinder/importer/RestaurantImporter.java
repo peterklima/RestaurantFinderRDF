@@ -1,4 +1,4 @@
-package at.fhooe.restaurantfinder.server.importer;
+package at.fhooe.restaurantfinder.importer;
 
 import java.util.ArrayList;
 import java.util.List;
