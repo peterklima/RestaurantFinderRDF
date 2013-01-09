@@ -75,7 +75,7 @@ public class Time implements Serializable {
 	}
 
 	public static Time fromString(String string) {
-		String[] parts = string.split(":");
+		String[] parts = string.trim().split(":");
 		int hour = Integer.parseInt(parts[0]);
 		int minute = Integer.parseInt(parts[1]);
 		return new Time(hour, minute);

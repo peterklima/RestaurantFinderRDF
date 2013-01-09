@@ -14,7 +14,7 @@ public enum Weekday {
 	}
 
 	public static Weekday fromString(String string) {
-		string = string.toLowerCase();
+		string = string.trim().toLowerCase();
 		for (Weekday day : values()) {
 			if (day.getLabel().startsWith(string)) {
 				return day;
