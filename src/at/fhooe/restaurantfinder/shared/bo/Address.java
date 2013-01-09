@@ -156,4 +156,32 @@ public class Address implements Serializable {
 				+ country + ", longitude=" + longitude + ", latitude=" + latitude + "]";
 	}
 
+	public String toFormattedString() {
+		String DELIMITER = ", ";
+		String address = "";
+		if (street != null){
+			address += street;
+			if (houseNumber != null){
+				address += " " + houseNumber;
+			}
+			address += DELIMITER;
+		}
+		boolean useDelimiter = false;
+		if (postalCode != null){
+			address += postalCode + " ";
+			useDelimiter = true;
+		}
+		if (city != null){
+			address += city;
+			useDelimiter = true;
+		}
+		if (useDelimiter){
+			address += DELIMITER;
+		}
+		if (country != null){
+			address += country;
+		}
+		return address;
+	}
+
 }
