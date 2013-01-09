@@ -6,7 +6,7 @@ public class Address implements Serializable {
 
 	private static final long serialVersionUID = -3949350031310514679L;
 
-	private Long id;
+	private String id;
 
 	private String street;
 
@@ -25,12 +25,12 @@ public class Address implements Serializable {
 	public Address() {
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(String string) {
+		this.id = string;
 	}
 
 	public String getStreet() {
