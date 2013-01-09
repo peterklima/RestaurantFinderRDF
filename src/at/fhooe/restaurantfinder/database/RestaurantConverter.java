@@ -2,20 +2,37 @@ package at.fhooe.restaurantfinder.database;
 
 import at.fhooe.restaurantfinder.shared.bo.Restaurant;
 
-import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.Resource;
 
-public class RestaurantConverter {
+public class RestaurantConverter extends BOConverter {
 	private static final String NAME_PROPERTY = "label";
+	private static final String DESCRIPTION_PROPERTY = "description";
 
 	public static void addToModel(Restaurant restaurant, Model model) {
-		Resource resource = model.createResource("http://linkedgeodata.org/triplify/node60116296");
-
-		Property label = model.createProperty(SDBWrapper.PREFIX_RDFS, NAME_PROPERTY);
-		Literal name = model.createLiteral(restaurant.getName());
-		model.add(resource, label, name);
+		RestaurantConverter restaurantConverter = new RestaurantConverter(model);
+		restaurantConverter.addRestaurant(restaurant);
 	}
 
+	private RestaurantConverter(Model model) {
+		this.model = model;
+	}
+
+	public void addRestaurant(Restaurant restaurant) {
+		this.resource = model.createResource(restaurant.getId());
+		addNameIfNotNull(restaurant.getName());
+		addDescriptionIfNotNull(restaurant.getDescription());
+		AddressConverter.addToModel(restaurant.getAddress(), model);
+	}
+
+	private void addNameIfNotNull(String name) {
+		if (name != null) {
+			addLiteral(SDBWrapper.PREFIX_RDFS, NAME_PROPERTY, name);
+		}
+	}
+
+	private void addDescriptionIfNotNull(String description) {
+		if (description != null) {
+			addLiteral(SDBWrapper.PREFIX_LOCAL, DESCRIPTION_PROPERTY, description);
+		}
+	}
 }

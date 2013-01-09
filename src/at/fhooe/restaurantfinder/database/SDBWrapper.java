@@ -27,6 +27,12 @@ import com.hp.hpl.jena.sdb.util.StoreUtils;
 public class SDBWrapper {
 	private static final String RDFS = "rdfs";
 	public static final String PREFIX_RDFS = RDFS + ":";
+	
+	private static final String LOCAL = "rfo";
+	public static final String PREFIX_LOCAL = LOCAL + ":";
+	
+	private static final String LGDO = "lgdo";
+	public static final String PREFIX_LGDO = LGDO + ":";
 
 	private SDBConnection connection;
 	private Store store;
@@ -46,6 +52,10 @@ public class SDBWrapper {
 			if (!StoreUtils.isFormatted(store)) {
 				System.out.println("format store");
 				store.getTableFormatter().create();
+				Model model = SDBFactory.connectDefaultModel(store);
+				model.setNsPrefix(RDFS, "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+				model.setNsPrefix(LGDO, "http://linkedgeodata.org/ontology/");
+				model.setNsPrefix(LOCAL, "http://restaurantfinder.local/ontology/");
 			} else {
 				System.out.println("truncate store");
 				store.getTableFormatter().truncate();
@@ -70,18 +80,11 @@ public class SDBWrapper {
 		return store;
 	}
 
-	public void add() {
+	public void add(Restaurant restaurant) {
 		System.out.println("add data to store");
 		Model model = SDBFactory.connectDefaultModel(store);
 		model.notifyEvent(GraphEvents.startRead);
 		try {
-			model.setNsPrefix(RDFS, "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-			model.setNsPrefix("lgdo", "http://linkedgeodata.org/ontology/");
-
-			Restaurant restaurant = new Restaurant();
-			restaurant.setId("http://linkedgeodata.org/triplify/node60116296");
-			restaurant.setName("Ziehfreund");
-
 			RestaurantConverter.addToModel(restaurant, model);
 		} finally {
 			model.notifyEvent(GraphEvents.finishRead);
