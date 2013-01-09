@@ -7,21 +7,21 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = -3949350031310514679L;
 
 	private Long id;
-	
+
 	private String street;
-	
-	private String streetNumber;
-	
-	private int postalcode;
-	
+
+	private String houseNumber;
+
+	private String postalCode;
+
 	private String city;
-	
+
 	private String country;
 
 	private double longitude;
-	
+
 	private double latitude;
-	
+
 	public Address() {
 	}
 
@@ -41,20 +41,20 @@ public class Address implements Serializable {
 		this.street = street;
 	}
 
-	public String getStreetNumber() {
-		return streetNumber;
+	public String getHouseNumber() {
+		return houseNumber;
 	}
 
-	public void setStreetNumber(String streetNumber) {
-		this.streetNumber = streetNumber;
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
 	}
 
-	public int getPostalcode() {
-		return postalcode;
+	public String getPostalCode() {
+		return postalCode;
 	}
 
-	public void setPostalcode(int postalcode) {
-		this.postalcode = postalcode;
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
 	}
 
 	public String getCity() {
@@ -96,14 +96,11 @@ public class Address implements Serializable {
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(latitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(longitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + postalcode;
+		result = prime * result + Double.toString(latitude).hashCode();
+		result = prime * result + Double.toString(longitude).hashCode();
+		result = prime * result + ((postalCode == null) ? 0 : postalCode.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
-		result = prime * result + ((streetNumber == null) ? 0 : streetNumber.hashCode());
+		result = prime * result + ((houseNumber == null) ? 0 : houseNumber.hashCode());
 		return result;
 	}
 
@@ -131,29 +128,32 @@ public class Address implements Serializable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
+		if (Double.compare(latitude, other.latitude) != 0)
 			return false;
-		if (Double.doubleToLongBits(longitude) != Double.doubleToLongBits(other.longitude))
+		if (Double.compare(longitude, other.longitude) != 0)
 			return false;
-		if (postalcode != other.postalcode)
+		if (postalCode == null) {
+			if (other.postalCode != null)
+				return false;
+		} else if (!postalCode.equals(other.postalCode))
 			return false;
 		if (street == null) {
 			if (other.street != null)
 				return false;
 		} else if (!street.equals(other.street))
 			return false;
-		if (streetNumber == null) {
-			if (other.streetNumber != null)
+		if (houseNumber == null) {
+			if (other.houseNumber != null)
 				return false;
-		} else if (!streetNumber.equals(other.streetNumber))
+		} else if (!houseNumber.equals(other.houseNumber))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", street=" + street + ", streetNumber=" + streetNumber + ", postalcode=" + postalcode + ", city=" + city + ", country="
+		return "Address [id=" + id + ", street=" + street + ", houseNumber=" + houseNumber + ", postalCode=" + postalCode + ", city=" + city + ", country="
 				+ country + ", longitude=" + longitude + ", latitude=" + latitude + "]";
 	}
-	
+
 }

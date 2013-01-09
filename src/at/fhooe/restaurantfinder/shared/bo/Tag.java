@@ -3,13 +3,13 @@ package at.fhooe.restaurantfinder.shared.bo;
 import java.io.Serializable;
 
 public class Tag implements Serializable {
-	
+
 	private static final long serialVersionUID = 7805942101513027950L;
 
 	private Long id;
-	
+
 	private String name;
-	
+
 	public Tag() {
 	}
 
@@ -53,6 +53,9 @@ public class Tag implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Tag [id=" + id + ", name=" + name + "]";
+	}
 }

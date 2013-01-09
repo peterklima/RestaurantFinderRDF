@@ -73,4 +73,11 @@ public class Time implements Serializable {
 	public String toString() {
 		return hour + ":" + (minute < 10 ? "0" : "") + minute;
 	}
+
+	public static Time fromString(String string) {
+		String[] parts = string.split(":");
+		int hour = Integer.parseInt(parts[0]);
+		int minute = Integer.parseInt(parts[1]);
+		return new Time(hour, minute);
+	}
 }

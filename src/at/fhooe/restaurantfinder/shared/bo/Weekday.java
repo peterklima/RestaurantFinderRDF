@@ -12,4 +12,14 @@ public enum Weekday {
 	public String getLabel() {
 		return label;
 	}
+
+	public static Weekday fromString(String string) {
+		string = string.toLowerCase();
+		for (Weekday day : values()) {
+			if (day.getLabel().startsWith(string)) {
+				return day;
+			}
+		}
+		return null;
+	}
 }
