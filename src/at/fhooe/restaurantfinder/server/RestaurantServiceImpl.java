@@ -31,6 +31,18 @@ public class RestaurantServiceImpl extends RemoteServiceServlet implements Resta
 	public List<Restaurant> getRestaurants() {
 		List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
+//		http://dbpedia.org/sparql
+		// dbpedia: select *
+		// where {
+		// ?restaurant a <http://schema.org/Restaurant> .
+		// ?restaurant dbpprop:country ?country .
+		// #?restaurant dcterms:subject <http://dbpedia.org/class/yago/RestaurantsInNewYorkCity> .
+		// }
+
+//		http://dbpedia.org/class/yago/IndianIngredients
+		
+//		http://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=select+distinct+%3FConcept+where+%7B%5B%5D+a+%3FConcept%7D&format=text%2Fhtml&timeout=0&debug=on
+		
 		try {
 			String queryStr = "PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> PREFIX lgd:<http://linkedgeodata.org/> PREFIX lgdo:<http://linkedgeodata.org/ontology/> PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>"
 					+ "SELECT * "
@@ -90,7 +102,7 @@ public class RestaurantServiceImpl extends RemoteServiceServlet implements Resta
 							}
 						}
 					}
-					
+
 					// set longitude
 					if (var.getName().equals("longitude")) {
 						if (node.isLiteral()) {
