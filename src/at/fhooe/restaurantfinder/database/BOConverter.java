@@ -16,4 +16,10 @@ public class BOConverter {
 		model.add(resource, predicate, object);
 	}
 
+	protected void addLiteral(String nameSpace, String localName, double value) {
+		Property predicate = model.createProperty(nameSpace, localName);
+		Literal object = model.createTypedLiteral(value);
+		model.add(resource, predicate, object);
+	}
+
 }
