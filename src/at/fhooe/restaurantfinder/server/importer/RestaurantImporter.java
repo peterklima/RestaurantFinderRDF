@@ -193,6 +193,8 @@ public class RestaurantImporter {
 		queryString += " < " + range + ") ";
 
 		queryString += "} LIMIT " + limit;
+		
+		System.out.println(queryString);
 
 		return QueryFactory.create(queryString);
 	}

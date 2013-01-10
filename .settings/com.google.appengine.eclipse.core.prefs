@@ -1,21 +1,5 @@
-<<<<<<< HEAD
 eclipse.preferences.version=1
 filesCopiedToWebInfLib=appengine-api-labs.jar|appengine-endpoints.jar|appengine-jsr107cache-1.7.2.1.jar|jsr107cache-1.1.jar|appengine-api-1.0-sdk-1.7.2.1.jar|asm-4.0.jar|datanucleus-api-jdo-3.1.0-m3.jar|datanucleus-api-jpa-3.1.0-m3.jar|datanucleus-appengine-2.1.0-final.jar|datanucleus-core-3.1.0-m5.jar|geronimo-jpa_2.0_spec-1.0.jar|jdo-api-3.0.1.jar|jta-1.1.jar
-gaeDatanucleusVersion=v2
-gaeHrdEnabled=true
-gaeIsEclipseDefaultInstPath=true
-googleCloudSqlEnabled=false
-localDevMySqlEnabled=true
-mySqlDatabaseName=restaurant_rdf
-mySqlDatabasePassword=bwRnABvjqRreWNmu
-mySqlDatabaseUser=restaurant_rdf
-mySqlHostName=localhost
-mySqlIsConfigured=true
-mySqlJdbcJar=/jboss/mysql-connector-java-5.1.21-bin.jar
-mySqlPort=3306
-=======
-eclipse.preferences.version=1
-filesCopiedToWebInfLib=appengine-api-labs.jar|appengine-endpoints.jar|appengine-jsr107cache-1.7.4.jar|jsr107cache-1.1.jar|appengine-api-1.0-sdk-1.7.4.jar|asm-4.0.jar|datanucleus-api-jdo-3.1.1.jar|datanucleus-api-jpa-3.1.1.jar|datanucleus-appengine-2.1.1.jar|datanucleus-core-3.1.1.jar|geronimo-jpa_2.0_spec-1.0.jar|jdo-api-3.0.1.jar|jta-1.1.jar
 gaeDatanucleusVersion=v2
 gaeHrdEnabled=true
 gaeIsEclipseDefaultInstPath=true
@@ -26,11 +10,5 @@ mySqlDatabasePassword=bwRnABvjqRreWNmu
 mySqlDatabaseUser=restaurant_rdf
 mySqlHostName=localhost
 mySqlIsConfigured=true
-mySqlJdbcJar=D\:\\AeroFS\\3_WS12\\SEM\\workspace\\mysql-connector-java-5.1.21\\mysql-connector-java-5.1.21-bin.jar
+mySqlJdbcJar=/jboss/mysql-connector-java-5.1.21-bin.jar
 mySqlPort=3306
-prodDatabaseName=restaurantfinder_rdf
-prodDatabasePassword=
-prodDatabaseUser=
-prodInstanceName=restaurantfinder_rdf
-prodIsConfigured=true
->>>>>>> branch 'master' of https://github.com/peterklima/RestaurantFinderRDF.git
