@@ -1,4 +1,4 @@
-package at.fhooe.restaurantfinder.server.importer;
+package at.fhooe.restaurantfinder.importer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +39,17 @@ public class RestaurantImporter {
 	private static final String QUERY_TAGS_FIELD2 = "cuisine2";
 
 	public List<Restaurant> loadRestaurants() {
+		return loadRestaurants(0, RESTAURANT_QUERY_DEFAULT_LIMIT);
+	}
+
+	public List<Restaurant> loadRestaurants(int limit) {
+		return loadRestaurants(0, limit);
+	}
+
+	public List<Restaurant> loadRestaurants(int offset, int limit) {
 		List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
-		Query query = getRestaurantQuery();
+		Query query = getRestaurantQuery(offset, limit);
 		QueryExecution qexec = QueryExecutionFactory.sparqlService(LINKEDGEODATA, query);
 		((QueryEngineHTTP) qexec).addParam(TIMEOUT_PARAMETER_NAME, TIMEOUT_PARAMETER_VALUE);
 
@@ -134,6 +142,7 @@ public class RestaurantImporter {
 		Address address = new Address();
 		RDFNode node = null;
 
+		address.setId(row.get(QUERY_ID_FIELD).toString());
 		address.setLatitude(row.get(QUERY_LATITUDE_FIELD).asLiteral().getDouble());
 		address.setLongitude(row.get(QUERY_LONGITUDE_FIELD).asLiteral().getDouble());
 
@@ -160,11 +169,7 @@ public class RestaurantImporter {
 		return address;
 	}
 
-	private Query getRestaurantQuery() {
-		return getRestaurantQuery(RESTAURANT_QUERY_DEFAULT_LIMIT);
-	}
-
-	private Query getRestaurantQuery(int limit) {
+	private Query getRestaurantQuery(int offset, int limit) {
 		String queryString = "PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> ";
 		queryString += "PREFIX lgd:<http://linkedgeodata.org/> ";
 		queryString += "PREFIX lgdo:<http://linkedgeodata.org/ontology/> ";
@@ -192,9 +197,9 @@ public class RestaurantImporter {
 		queryString += "(?latitude - " + latitude + ") * (?latitude - " + latitude + ") + (?longitude - " + longitude + ") * (?longitude - " + longitude + ")";
 		queryString += " < " + range + ") ";
 
-		queryString += "} LIMIT " + limit;
-		
-		System.out.println(queryString);
+		queryString += "} ";
+		queryString += "OFFSET " + offset;
+		queryString += "LIMIT " + limit;
 
 		return QueryFactory.create(queryString);
 	}
